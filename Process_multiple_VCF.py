@@ -6,8 +6,7 @@ for filename in glob.glob1(VCF, "*.vcf"):
         FileLst = FileLst + [open(filename, "r")]#open all vcf files 
         FileNameLst = FileNameLst + [filename]#make a list of file names
 print(FileNameLst)
-for file_name in FileNameLst:
-#file_name = 'ActionableMutations'
+for file_name in FileNameLst:#file_name is an xlsx file
         with open(file_name[:-4]+'tsv', 'w') as myCsvfile:
                 # define a writer
                 wr = csv.writer(myCsvfile, delimiter="\t")
