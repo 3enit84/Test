@@ -1,5 +1,5 @@
 
-import os, glob, string
+import os, glob
 
 FileLst = FileNameLst = []
 for filename in glob.glob1(VCF, "*.vcf"):
@@ -22,7 +22,7 @@ for file_name in FileNameLst:#file_name is an xlsx file
 line = file.readline()
 
 while line != "":
-      rec = string.split(line,"\t")
+      rec = str.split(line,"\t")
       
       if rec[0][1] == "#":
             line = file.readline()
@@ -31,7 +31,7 @@ while line != "":
             if rec[0][0] == "#": # Title line
                   newfile.write("SNP ID") #write SNP ID instead of just ID, which will convert output to SYLK format
                   for i in range(9,len(rec),2):
-                        Smpl_ID = string.split(rec[i],".")
+                        Smpl_ID = str.split(rec[i],".")
                         newfile.write("\t"+ Smpl_ID[0])
                   newfile.write("\n")
             else:
