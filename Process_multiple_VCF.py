@@ -4,7 +4,7 @@ import os, glob
 FileLst = FileNameLst = []
 for filename in glob.glob1(VCF, "*.vcf"):
         FileLst = FileLst + [open(filename, "r")]#open all vcf files 
-        FileNameLst = FileNameLst + [filename]#make a list of file names
+        FileNameLst += [filename]#make a list of file names
 print(FileNameLst)
 for file_name in FileNameLst:#file_name is an xlsx file
         with open(file_name[:-4]+'tsv', 'w') as myCsvfile:
@@ -19,13 +19,10 @@ for file_name in FileNameLst:#file_name is an xlsx file
                 # write the rows
                 for rownum in range(mysheet.nrows):
                         wr.writerow(mysheet.row_values(rownum))
-line = file.readline()
-
-while line != "":
+for line in file:
       rec = str.split(line,"\t")
       
       if rec[0][1] == "#":
-            line = file.readline()
             continue
       else:          
             if rec[0][0] == "#": # Title line
@@ -60,7 +57,6 @@ while line != "":
                         else: GT_b = ALT
                         newfile.write("\t"+ GT_a +"/"+ GT_b)                   
                   newfile.write("\n")
-      line = file.readline()
 
 newfile.close()
 file.close()
