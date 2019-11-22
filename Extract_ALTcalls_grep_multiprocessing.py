@@ -5,7 +5,6 @@ from subprocess import call
 FileNameLst = []
 for filename in glob.glob('*.vcf.gz'):
         FileNameLst = FileNameLst + [filename]#make a list of file names
-print(len(FileNameLst), FileNameLst[0:4])
 
 def process_file(infile):#function to run each file through tabix
         command = ("zcat "+infile+"|awk -F'\t' '$10~/1/'>"+infile[0:-3]+"_alt.tsv")
